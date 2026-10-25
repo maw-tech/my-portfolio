@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1117">
+  <title>Michael | IT Support &amp; Infrastructure</title>
+  <meta name="description" content="Portfolio of Michael, an enterprise IT support professional focused on infrastructure operations, networking, and data center technology.">
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --bg: #0b1117;
+      --bg-raised: #0f171f;
+      --surface: #131d27;
+      --surface-2: #182430;
+      --border: #22303d;
+      --border-strong: #2e3f50;
+
+      --text: #e8eef4;
+      --text-muted: #a9b6c3;
+      --text-subtle: #8a9aab;
+
+      --teal: #4cc9bd;
+      --teal-soft: rgba(76, 201, 189, 0.12);
+      --teal-line: rgba(76, 201, 189, 0.45);
+      --blue: #6ea8f7;
+      --blue-strong: #2f6fd6;
+      --blue-hover: #3a7be3;
+      --blue-soft: rgba(110, 168, 247, 0.12);
+
+      --header-bg: rgba(11, 17, 23, 0.86);
+      --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.28);
+      --radius: 14px;
+      --max: 1120px;
+
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 0.5em;
+      line-height: 1.2;
+      font-weight: 650;
+      color: var(--text);
+      text-wrap: balance;
+    }
+    p { margin: 0 0 1.1em; text-wrap: pretty; }
+    a { color: var(--blue); text-underline-offset: 3px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      background: var(--blue-strong);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      z-index: 100;
+    }
+    .skip-link:focus { left: 12px; }
+
+    :focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .brand span { color: var(--teal); }
+
+    .nav-toggle {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .nav-toggle svg { display: block; }
+
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+    }
+    .site-nav a {
+      position: relative;
+      display: block;
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.15s, background 0.15s;
+    }
+    .site-nav a:hover { color: var(--text); background: var(--surface); }
+    .site-nav a[aria-current="true"] { color: var(--text); }
+    .site-nav a[aria-current="true"]::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 2px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--teal);
+    }
+
+    @media (max-width: 720px) {
+      .nav-toggle { display: inline-flex; }
+      .site-nav {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--bg-raised);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        display: none;
+      }
+      .site-nav.open { display: block; }
+      .site-nav ul { flex-direction: column; gap: 2px; padding: 10px 16px 18px; }
+      .site-nav a { padding: 12px 12px; font-size: 1rem; }
+      .site-nav a[aria-current="true"] { background: var(--surface); }
+      .site-nav a[aria-current="true"]::after {
+        left: 0; right: auto; top: 10px; bottom: 10px; width: 3px; height: auto;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 120px 0 104px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(700px 360px at 88% 0%, rgba(110, 168, 247, 0.10), transparent 70%),
+        radial-gradient(600px 320px at 10% 110%, rgba(76, 201, 189, 0.08), transparent 70%),
+        var(--bg);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.35;
+      -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 65%);
+      mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--teal-line);
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5.4vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      max-width: 17ch;
+      margin-bottom: 24px;
+    }
+    .hero .lead {
+      font-size: clamp(1.075rem, 1.6vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 58ch;
+      margin-bottom: 0;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.975rem;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .btn-primary { background: var(--blue-strong); color: #fff; }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-secondary {
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-secondary:hover { border-color: var(--teal-line); background: var(--teal-soft); }
+
+    /* Sections */
+    section { padding: 112px 0; }
+    .section-alt {
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-head { margin-bottom: 56px; max-width: 62ch; }
+    .section-head h2 {
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .section-head h2::before {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 3px;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+    }
+    .section-head p { color: var(--text-muted); font-size: 1.075rem; margin: 0; }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .about-copy .section-head { margin-bottom: 32px; }
+    .about-copy p { max-width: 62ch; color: var(--text-muted); }
+    .about-copy p:first-of-type { color: var(--text); font-size: 1.125rem; }
+
+    .focus-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-top: 8px;
+    }
+    .focus-card h3 {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 20px;
+    }
+    .focus-list { list-style: none; margin: 0; padding: 0; }
+    .focus-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+    }
+    .focus-list li:first-child { border-top: 0; padding-top: 0; }
+    .focus-list li:last-child { padding-bottom: 0; }
+    .focus-list svg {
+      flex: none;
+      box-sizing: content-box;
+      padding: 8px;
+      border-radius: 10px;
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+    .focus-list strong { display: block; font-weight: 600; margin-bottom: 2px; }
+    .focus-list span { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .focus-card { margin-top: 0; }
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .skill-card:hover { border-color: var(--border-strong); background: var(--surface-2); }
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .skill-card h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.005em; margin-bottom: 8px; }
+    .skill-card p { color: var(--text-muted); font-size: 0.975rem; line-height: 1.65; margin-bottom: 0; }
+
+    .interests {
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 16px 28px;
+    }
+    .interests h3 {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin: 0;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+    .tag {
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.4;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+      gap: 32px;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    /* transform and box-shadow don't affect layout, so the lift never moves neighbouring content */
+    @media (hover: hover) and (pointer: fine) {
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--teal-line);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 36px rgba(0, 0, 0, 0.42);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .project-card:hover { transform: none; }
+    }
+    .project-visual {
+      background:
+        radial-gradient(400px 160px at 50% 0%, rgba(76, 201, 189, 0.06), transparent 70%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px;
+    }
+    .project-visual svg { display: block; width: 100%; height: auto; }
+    .project-visual .box { fill: var(--surface); stroke: var(--border-strong); }
+    .project-visual .box-accent { fill: rgba(76, 201, 189, 0.10); stroke: var(--teal); }
+    .project-visual .label { fill: var(--text); font: 600 12.5px var(--font); }
+    .project-visual .sub { fill: var(--text-muted); font: 500 11px var(--font); }
+    .project-visual .line { stroke: #5d6f82; stroke-width: 1.5; fill: none; }
+    .project-visual .line-dash { stroke: #5d6f82; stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; }
+    .project-visual .arrow { fill: #5d6f82; }
+
+    .project-body { padding: 30px; display: flex; flex-direction: column; flex: 1; }
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .project-body h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 12px; }
+    .project-body > p { color: var(--text-muted); margin-bottom: 24px; }
+    .project-body h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin: 0 0 12px;
+    }
+    .project-body ul.points {
+      list-style: none;
+      margin: 0 0 28px;
+      padding: 0;
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      line-height: 1.6;
+    }
+    .project-body ul.points li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 10px;
+    }
+    .project-body ul.points li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.62em;
+      width: 8px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--teal);
+    }
+    .project-body .tags { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--border); }
+
+    /* Footer */
+    .site-footer {
+      padding: 36px 0;
+      color: var(--text-subtle);
+      font-size: 0.925rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-inner p { margin: 0; }
+    .footer-inner a { color: var(--text-muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--teal); }
+
+    @media (max-width: 560px) {
+      body { font-size: 1.0625rem; line-height: 1.65; }
+      .container { padding: 0 16px; }
+      .hero { padding: 80px 0 72px; }
+      .hero-actions { margin-top: 32px; }
+      .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+      section { padding: 80px 0; }
+      .section-head { margin-bottom: 40px; }
+      .skill-card { padding: 24px; }
+      .focus-card { padding: 24px; }
+      .project-visual { padding: 18px 8px; }
+      .project-body { padding: 24px; }
+      .interests { flex-direction: column; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">Michael<span>.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero" id="top">
+      <div class="container">
+        <span class="eyebrow">Enterprise IT Support</span>
+        <h1>Hi, I'm Michael. I keep people and systems working.</h1>
+        <p class="lead">I support end users and infrastructure teams across endpoints, hardware, accounts, and service workflows, and I'm building toward a career in infrastructure operations, networking, and data center technology.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-secondary" href="#about">About me</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-alt" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <div class="section-head">
+            <h2 id="about-title">About Me</h2>
+          </div>
+          <p>I work in enterprise IT support, where my day-to-day spans the full lifecycle of user technology. I provision and prepare endpoints, troubleshoot hardware issues, and handle Active Directory account support so people can get back to work quickly.</p>
+          <p>Much of my work runs through ServiceNow, where I manage incidents and keep asset records accurate as equipment moves through an organization. I also provide hands-on, physical assistance to infrastructure teams, which has given me a close look at how the systems behind the help desk are built and maintained.</p>
+          <p>That exposure is what drives my next step. I'm interested in infrastructure operations, networking, and data center technology, and I'm continuing to grow my skills in those areas through coursework and hands-on projects.</p>
+        </div>
+
+        <aside class="focus-card" aria-labelledby="focus-title">
+          <h3 id="focus-title">Where I'm headed</h3>
+          <ul class="focus-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><line x1="7" y1="7" x2="7.01" y2="7"/><line x1="7" y1="17" x2="7.01" y2="17"/></svg>
+              <div><strong>Infrastructure operations</strong><span>Keeping core systems reliable and well run.</span></div>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v5M12 12l-6 5M12 12l6 5"/></svg>
+              <div><strong>Networking</strong><span>How devices, sites, and services connect.</span></div>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+              <div><strong>Data center technology</strong><span>The physical and logical foundations of IT.</span></div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="skills-title">Skills</h2>
+          <p>The core areas I work in every day.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Endpoint Provisioning</h3>
+            <p>Preparing and configuring laptops and workstations so users receive devices that are ready for work.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+            </div>
+            <h3>Hardware Troubleshooting</h3>
+            <p>Diagnosing and resolving device and peripheral issues methodically to reduce downtime for users.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+            </div>
+            <h3>ServiceNow Workflows</h3>
+            <p>Working incidents through to resolution and maintaining asset records as equipment is assigned, moved, and returned.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="M19 8v6M16 11h6"/></svg>
+            </div>
+            <h3>Active Directory Support</h3>
+            <p>Handling user account requests and access issues to keep people securely connected to the resources they need.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="1"/><rect x="3" y="14" width="18" height="7" rx="1"/><line x1="7" y1="6.5" x2="7.01" y2="6.5"/><line x1="7" y1="17.5" x2="7.01" y2="17.5"/></svg>
+            </div>
+            <h3>Infrastructure Team Assistance</h3>
+            <p>Providing hands-on, physical support to infrastructure teams during on-site work.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>End-User Support</h3>
+            <p>Communicating clearly with users, setting expectations, and following issues through until they are resolved.</p>
+          </article>
+        </div>
+
+        <div class="interests">
+          <h3>Areas of interest</h3>
+          <ul class="tags">
+            <li class="tag">Infrastructure operations</li>
+            <li class="tag">Networking</li>
+            <li class="tag">Data center technology</li>
+            <li class="tag">IT service management</li>
+            <li class="tag">Applied AI for IT workflows</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="projects-title">Projects</h2>
+          <p>Educational prototypes exploring how automation can support IT and service workflows.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-visual">
+              <svg viewBox="0 0 360 170" role="img" aria-label="Diagram: an incoming inquiry is classified and routed to IT, Billing, or Admissions, with unclear requests sent to manual review.">
+                <rect class="box" x="6" y="62" width="82" height="46" rx="8"/>
+                <text class="label" x="47" y="83" text-anchor="middle">Inquiry</text>
+                <text class="sub" x="47" y="98" text-anchor="middle">email</text>
+
+                <path class="line" d="M88 85 H120"/>
+                <polygon class="arrow" points="120,80 128,85 120,90"/>
+
+                <rect class="box-accent" x="128" y="62" width="88" height="46" rx="8"/>
+                <text class="label" x="172" y="83" text-anchor="middle">Classifier</text>
+                <text class="sub" x="172" y="98" text-anchor="middle">category</text>
+
+                <path class="line" d="M216 85 H236 V20 H256"/>
+                <path class="line" d="M236 85 V62 H256"/>
+                <path class="line" d="M236 85 V104 H256"/>
+                <path class="line-dash" d="M236 85 V146 H256"/>
+                <polygon class="arrow" points="256,15 264,20 256,25"/>
+                <polygon class="arrow" points="256,57 264,62 256,67"/>
+                <polygon class="arrow" points="256,99 264,104 256,109"/>
+                <polygon class="arrow" points="256,141 264,146 256,151"/>
+
+                <rect class="box" x="264" y="4" width="90" height="32" rx="7"/>
+                <text class="label" x="309" y="24" text-anchor="middle">IT</text>
+                <rect class="box" x="264" y="46" width="90" height="32" rx="7"/>
+                <text class="label" x="309" y="66" text-anchor="middle">Billing</text>
+                <rect class="box" x="264" y="88" width="90" height="32" rx="7"/>
+                <text class="label" x="309" y="108" text-anchor="middle">Admissions</text>
+                <rect class="box" x="264" y="130" width="90" height="32" rx="7" stroke-dasharray="4 3"/>
+                <text class="label" x="309" y="150" text-anchor="middle">Manual review</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Educational prototype</span>
+              <h3>Smart Email Router</h3>
+              <p>A prototype that classifies incoming university inquiries and routes each one to the right team: IT, Billing, or Admissions.</p>
+              <h4>How it works</h4>
+              <ul class="points">
+                <li>Reads the content of an inquiry and assigns it to one of three categories.</li>
+                <li>Sends requests that don't clearly fit a category to manual review instead of guessing.</li>
+                <li>Keeps a person involved in ambiguous cases so unclear requests are not misrouted.</li>
+              </ul>
+              <ul class="tags" aria-label="Topics">
+                <li class="tag">Text classification</li>
+                <li class="tag">Request routing</li>
+                <li class="tag">Human-in-the-loop review</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <svg viewBox="0 0 360 170" role="img" aria-label="Diagram: a user question retrieves relevant sections from fictional IT policy documents, which are used to generate a grounded answer.">
+                <rect class="box" x="6" y="62" width="82" height="46" rx="8"/>
+                <text class="label" x="47" y="83" text-anchor="middle">Question</text>
+                <text class="sub" x="47" y="98" text-anchor="middle">user</text>
+
+                <path class="line" d="M88 85 H120"/>
+                <polygon class="arrow" points="120,80 128,85 120,90"/>
+
+                <rect class="box-accent" x="128" y="62" width="88" height="46" rx="8"/>
+                <text class="label" x="172" y="83" text-anchor="middle">Retrieve</text>
+                <text class="sub" x="172" y="98" text-anchor="middle">policy sections</text>
+
+                <rect class="box" x="138" y="4" width="68" height="38" rx="6"/>
+                <line class="line" x1="148" y1="16" x2="196" y2="16"/>
+                <line class="line" x1="148" y1="24" x2="196" y2="24"/>
+                <line class="line" x1="148" y1="32" x2="182" y2="32"/>
+                <path class="line-dash" d="M172 42 V62"/>
+                <text class="sub" x="172" y="134" text-anchor="middle">fictional university</text>
+                <text class="sub" x="172" y="148" text-anchor="middle">IT policies</text>
+
+                <path class="line" d="M216 85 H248"/>
+                <polygon class="arrow" points="248,80 256,85 248,90"/>
+
+                <rect class="box" x="256" y="62" width="98" height="46" rx="8"/>
+                <text class="label" x="305" y="83" text-anchor="middle">Answer</text>
+                <text class="sub" x="305" y="98" text-anchor="middle">grounded</text>
+              </svg>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Coursework prototype · RAG</span>
+              <h3>Open-Book IT Policy Assistant</h3>
+              <p>A retrieval-augmented generation (RAG) prototype that answers questions about fictional university IT policies using the policy text itself.</p>
+              <h4>How it works</h4>
+              <ul class="points">
+                <li>Retrieves the policy sections most relevant to a user's question.</li>
+                <li>Generates an answer grounded in the retrieved sections rather than general knowledge.</li>
+                <li>Works "open book," so answers stay tied to the source policy content.</li>
+              </ul>
+              <ul class="tags" aria-label="Topics">
+                <li class="tag">Retrieval-augmented generation</li>
+                <li class="tag">Document retrieval</li>
+                <li class="tag">Grounded answers</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Michael</p>
+      <a href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+
+      function closeNav() {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) closeNav();
+      });
+
+      document.addEventListener('click', function (e) {
+        if (nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+          closeNav();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('open')) {
+          closeNav();
+          toggle.focus();
+        }
+      });
+
+      // Highlight the nav link for the section currently in view
+      var links = nav.querySelectorAll('a[href^="#"]');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            links.forEach(function (link) {
+              if (link.getAttribute('href') === '#' + entry.target.id) {
+                link.setAttribute('aria-current', 'true');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        // 'top' is the hero; it matches no link, so returning to it clears the highlight
+        ['top', 'about', 'skills', 'projects'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) observer.observe(el);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
